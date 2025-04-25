@@ -1,0 +1,36 @@
+.containerBacklog {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.containerBacklog h1{
+  margin: 20px;
+}
+
+.crearTareaButton {
+  width: 150px;
+  height: 40px;
+  margin-left: 20px;
+  background-color: #00adb5;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  transition: ease-in-out .3s;
+}
+.crearTareaButton:hover {
+  background-color: #00d7e2;
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.backlogIcon {
+  margin-left: 8px;
+  font-size: 22px;
+  transform: translateY(5px);
+}
+
+

@@ -1,0 +1,56 @@
+.containerSprints {
+    width: 90%;
+    background-color: #393e46;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    color: white;
+    transition: opacity 0.3s ease-in-out;
+}
+.containerSprints:hover:not(:has(button:hover)){
+    cursor:pointer;
+    opacity: 0.9;
+}
+
+.buttons {
+    margin-top: 10px;
+    margin-left: 173px;
+}
+
+.visibilityButton,
+.editButton,
+.deleteButton {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 2px;
+    color: white;
+    transition: transform ease-in-out .3s;
+}
+
+.visibilityButton:hover,
+.editButton:hover,
+.deleteButton:hover {
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.visibilityButton,
+.editButton {
+    background-color: #00adb5;
+}
+
+.deleteButton {
+    background-color: red;
+}
+.textoTarjeta{
+    display: block;
+    white-space: nowrap;       /* Todo en una línea */
+    overflow-x: auto;          /* Scroll horizontal */
+    overflow-y: hidden;        /* Sin scroll vertical */
+    max-width: 100%;           /* Ocupa todo el ancho disponible */
+}
+.textoTarjeta::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,67 @@
+.containerPrincipalModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: brightness(90%) blur(2px);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.contentPopUP {
+    background-color: #393e46;
+    box-shadow: 5px 2px 10px #ccc;
+    width: 35vw;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-around;
+    color: #fff;
+}
+.contentPopUP h2,
+.contentPopUP h3 {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+.buttonCerrarModal {
+    width: 40%;
+    padding: 10px;
+    margin: 20px 0 0 15px;
+    background-color: #00adb5;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    transition: ease-in-out .3s;
+}
+.buttonCerrarModal:hover{
+    cursor: pointer;
+    background-color: #00d7e2;
+    scale: 1.01;
+    transform: translateY(-3px);
+}
+.textoTarjeta{
+    display: block;
+    white-space: nowrap;       /* Todo en una línea */
+    overflow-x: auto;          /* Scroll horizontal */
+    overflow-y: hidden;        /* Sin scroll vertical */
+    max-width: 100%;           /* Ocupa todo el ancho disponible */
+}
+.textoTarjeta::-webkit-scrollbar {
+    display: none;
+}

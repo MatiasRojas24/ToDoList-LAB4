@@ -1,0 +1,72 @@
+.targetSprintProgress {
+    width: 90%;
+    background-color: #eee;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    color: black;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: hidden;
+}  
+.targetProgressbuttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.textoTarjeta{
+    display: block;
+    white-space: nowrap;       /* Todo en una línea */
+    overflow-x: auto;          /* Scroll horizontal */
+    overflow-y: hidden;        /* Sin scroll vertical */
+    max-width: 100%;           /* Ocupa todo el ancho disponible */
+}
+.textoTarjeta::-webkit-scrollbar {
+    display: none;
+}
+.visibilityButton,
+.editButton,
+.deleteButton,
+.moveButton,
+.moveButtonIzquierda,
+.enviarBacklogButton {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 2px;
+    color: white;
+    transition: .3s;
+}
+.visibilityButton,
+.editButton {
+    background-color: #00adb5;
+}
+
+.deleteButton {
+    background-color: red;
+}
+
+.moveButton {
+    background-color: orange;
+}
+.moveButtonIzquierda {
+    background-color: orange;
+}
+.moveButtonIzquierda span{
+    transform: rotate(180deg);
+}
+
+.visibilityButton:hover,
+.editButton:hover,
+.deleteButton:hover,
+.moveButton:hover,
+.moveButtonIzquierda:hover,
+.enviarBacklogButton:hover {
+    cursor:pointer;
+    transform: translateY(-3px);
+}
+
+.enviarBacklogButton {
+background-color: green;
+}

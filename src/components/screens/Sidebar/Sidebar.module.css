@@ -1,0 +1,70 @@
+.sidebar {
+  width: 25vw;
+  height: 100vh;
+  background-color: #222831;
+}
+
+.backlogButton {
+  width: 90%;
+  padding: 10px;
+  margin: 20px 0 0 15px;
+  background-color: #00adb5;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  transition: ease-in-out .3s;
+}
+.backlogButton:hover{
+  cursor: pointer;
+  background-color: #00d7e2;
+  scale: 1.01;
+  transform: translateY(-3px);
+}
+
+.backlogIcon {
+  margin-left: 8px;
+  font-size: 22px;
+  transform: translateY(5px);
+}
+
+.containerListSprints {
+  width: 90%;
+  height: 78vh;
+  background-color: #eee;
+  margin: 0 auto;
+  margin-top: 40px;
+  border: none;
+  border-radius: 8px;
+  padding-top: 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.buttonAddSprint {
+  margin-left: 90px;
+  background-color: #00adb5;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  transform: translateY(2px);
+  transition: ease-in-out .3s;
+}
+.buttonAddSprint:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.containerListSprints h3 {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.containerListSprints hr {
+  width: 95%;
+  margin: 0 auto;
+  color: #eee;
+}
+

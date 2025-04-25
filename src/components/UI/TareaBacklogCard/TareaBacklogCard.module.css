@@ -1,0 +1,60 @@
+.containerTareaBacklog {
+    width: 70vw;
+    margin-left: 20px;
+    margin-top: 20px;
+    background-color: #393e46;
+    padding: 15px;
+    border-radius: 10px;
+    color: #eee;
+}
+
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown {
+    min-width: 150px;
+}
+
+.visibilityButton,
+.editButton,
+.deleteButton,
+.sendButton {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 2px;
+    color: white;
+}
+
+.visibilityButton,
+.editButton,
+.sendButton {
+    background-color: #00adb5;
+    transition: ease-in-out .3s;
+}
+.visibilityButton:hover,
+.editButton:hover,
+.deleteButton:hover {
+    transform: translateY(-3px);
+    cursor: pointer;
+    }
+.sendButton:hover {
+    background-color: #00d7e2;
+  scale: 1.1;
+  cursor: pointer;
+}
+.deleteButton {
+    background-color: red;
+}
+
+.sendButton {
+    font-size: 20px;
+}
+
+.sendIcon {
+    transform: translateY(5px);
+}

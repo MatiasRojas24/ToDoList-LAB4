@@ -1,0 +1,98 @@
+.containerPrincipalModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: brightness(90%) blur(2px);
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 9999;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.contentPopUP {
+  background-color: #393e46;
+  box-shadow: 5px 2px 10px #ccc;
+  width: 35vw;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.formContent input,
+textarea {
+  width: 470px;
+  padding: 0.3rem;
+  resize: none;
+  margin: 0.4rem 0;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 17px;
+}
+
+.formContent button {
+  width: 120px;
+  font-size: 15px;
+  padding: 5px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+}
+
+.buttonCrearTarea {
+  background-color: #1e642d;
+  transition: 0.5s ease-in-out;
+}
+.buttonCrearTarea:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 1px green;
+}
+
+.buttonCrearTarea:disabled {
+  background-color: gray;
+  box-shadow: none;
+}
+
+.buttonCancel {
+  background-color: #83220c;
+  transition: 0.5s ease-in-out;
+}
+.buttonCancel:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 1px red;
+}
+
+.buttonCard {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.errors {
+  display: block;
+  color: red;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
