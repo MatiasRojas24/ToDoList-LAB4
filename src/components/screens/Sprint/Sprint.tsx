@@ -39,6 +39,12 @@ export const Sprint = () => {
       setTareasCompletadas([]);
       return;
     }
+    sprintURL.tareas = sprintURL.tareas.map((tarea: ITarea) => ({
+      ...tarea,
+      fechaLimite: tarea.fechaLimite
+        ? new Date(tarea.fechaLimite).toISOString().split("T")[0]
+        : "",
+    }));
     setSprint(sprintURL);
     const tareas = sprintURL.tareas || [];
     sortTareas(tareas);
@@ -58,7 +64,7 @@ export const Sprint = () => {
   }
 
   // editar estado de las tareas de la sprint
-  const { modificarEstadoTareasSprint } = useSprints()
+  const { editarEstadoTareaSprint } = useSprints()
   const handleChangeEstadoAPendiente = (tarea: ITarea) => {
     const tareaActualizada: ITarea = { ...tarea, estado: 'pendiente' }
     handleUpdateTarea(tareaActualizada)
@@ -71,12 +77,9 @@ export const Sprint = () => {
     const tareaActualizada: ITarea = { ...tarea, estado: 'completado' }
     handleUpdateTarea(tareaActualizada)
   }
-  const handleUpdateTarea = (tareaActualizada: ITarea) => { //sube la actualización de las tareas a la sprint
-    const tareasActualizadas = sprint?.tareas.map((tarea) =>
-      tarea._id === tareaActualizada._id ? tareaActualizada : tarea
-    );
-    if (!tareasActualizadas) return;
-    modificarEstadoTareasSprint({ ...sprint!, tareas: tareasActualizadas });
+  const handleUpdateTarea = (tareaActualizada: ITarea) => {
+    editarEstadoTareaSprint(tareaActualizada);
+    handleGetTareas()
   }
 
   // Abrir modal crear tarea
@@ -91,10 +94,9 @@ export const Sprint = () => {
   }
   // Crear Tarea 
   const { crearTareaSprint } = useSprints()
-  const handleCrearTareaEnSprint = (nuevaTarea: ITarea) => {
-    if (!sprint) return;
-    const tareasActualizadas = [...sprint.tareas, nuevaTarea];
-    crearTareaSprint({ ...sprint, tareas: tareasActualizadas });
+  const handleCrearTareaEnSprint = async (nuevaTarea: ITarea) => {
+    await crearTareaSprint(nuevaTarea, sprint!._id!)
+    handleGetTareas()
   }
 
   // Editar Tarea
@@ -124,13 +126,10 @@ export const Sprint = () => {
   }
 
   // Enviar tarea al backlog
-  const { recibirTareaDeSprint } = useTareas()
   const { enviarTareaABacklog } = useSprints()
-  const handleEnviarABacklog = (tareaIn: ITarea) => {
-    if (!sprint) return;
-    const tareasActualizadas = sprint.tareas.filter(tarea => tarea._id !== tareaIn._id);
-    enviarTareaABacklog({ ...sprint, tareas: tareasActualizadas });
-    recibirTareaDeSprint(tareaIn)
+  const handleEnviarABacklog = async (tareaIn: ITarea) => {
+    await enviarTareaABacklog(tareaIn._id!, sprint!._id!);
+    handleGetTareas()
   }
   return (
     <>

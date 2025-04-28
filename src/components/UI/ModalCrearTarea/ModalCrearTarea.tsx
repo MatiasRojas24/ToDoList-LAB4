@@ -5,6 +5,7 @@ import { tareaStore } from "../../../store/tareaStore";
 import { useTareas } from "../../../hooks/useTareas";
 import * as Yup from "yup";
 import { crearTareaSchema } from "../../../schemas/modalCrearTareaSchema";
+import mongoose from "mongoose";
 
 type IModalCrearTarea = {
   handleCloseModal: VoidFunction;
@@ -71,7 +72,8 @@ export const ModalCrearTarea: FC<IModalCrearTarea> = ({ handleCloseModal }) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    const fechaAFormatear = formValues.fechaLimite
+    formValues.fechaLimite = new Date(fechaAFormatear).toISOString().split("T")[0]
     try {
       await crearTareaSchema.validate(formValues, { abortEarly: false });
       setErrors({});
@@ -81,7 +83,7 @@ export const ModalCrearTarea: FC<IModalCrearTarea> = ({ handleCloseModal }) => {
       } else {
         const formattedValues = {
           ...formValues,
-          _id: crypto.randomUUID(),
+          _id: new mongoose.Types.ObjectId().toString(),
           estado: formValues.estado ?? "pendiente",
           tareas: [],
         };

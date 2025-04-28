@@ -52,7 +52,7 @@ export const deleteTareaController = async (id: string): Promise<{ mensaje: stri
 
 export const tareaFromBacklogToSprintController = async (tareaId: string, sprintId: string): Promise<{ mensaje: string, sprint: ISprint } | undefined> => {
     try {
-        const response = await axios.put<{ mensaje: string, sprint: ISprint }>(API_URL + `${tareaId}/move-to-sprint/${sprintId}`)
+        const response = await axios.put<{ mensaje: string, sprint: ISprint }>(API_URL + `/${tareaId}/move-to-sprint/${sprintId}`)
         return response.data
     } catch (error) {
         console.log("Problemas en tareaFromBacklogToSprintController", error)
@@ -61,7 +61,7 @@ export const tareaFromBacklogToSprintController = async (tareaId: string, sprint
 
 export const tareaFromSprintToBacklog = async (tareaId: string, sprintId: string): Promise<{ mensaje: string, backlog: IBacklog } | undefined> => {
     try {
-        const response = await axios.put<{ mensaje: string, backlog: IBacklog }>(API_URL + `${tareaId}/move-to-backlog/${sprintId}`)
+        const response = await axios.put<{ mensaje: string, backlog: IBacklog }>(API_URL + `/${tareaId}/move-to-backlog/${sprintId}`)
         return response.data
     } catch (error) {
         console.log("Problemas en tareaFromSprintToBacklog", error)

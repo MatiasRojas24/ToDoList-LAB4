@@ -51,7 +51,7 @@ export const Sidebar = () => {
           </h3>
 
           <hr />
-          {sprints.length > 0 ? sprints.map((sprint) => (<SprintListCard sprint={sprint} handleNavigateSprint={handleNavigateSprint} handleOpenModalEdit={handleOpenModalEdit} handleDelete={handleDelete} />)) : <h3>No hay Sprints</h3>}
+          {sprints.length > 0 ? sprints.map((sprint) => (<SprintListCard key={sprint._id} sprint={sprint} handleNavigateSprint={handleNavigateSprint} handleOpenModalEdit={handleOpenModalEdit} handleDelete={handleDelete} />)) : <h3>No hay Sprints</h3>}
         </div >
       </aside >
       {openModal && <ModalCrearSprint handleCloseModal={handleCloseModal} />}

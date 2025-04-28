@@ -17,7 +17,7 @@ export const TarjetaTareaSprint: FC<ITarjetaTareaSprint> = ({ tareas, handleChan
     return (
         <>
             {tareas.map((tarea) => (
-                <div className={styles.targetSprintProgress}>
+                <div key={tarea._id} className={styles.targetSprintProgress}>
                     <h4 className={styles.textoTarjeta}>Título: {tarea.titulo}</h4>
                     <p className={styles.textoTarjeta}>Descripción: {tarea.descripcion}</p>
                     <p className={styles.textoTarjeta}>Fecha Límite: {tarea.fechaLimite}</p>

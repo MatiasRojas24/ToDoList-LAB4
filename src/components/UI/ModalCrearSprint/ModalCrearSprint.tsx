@@ -5,6 +5,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { useSprints } from "../../../hooks/useSprints";
 import { crearSprintSchema } from "../../../schemas/modalCrearSprintSchema";
 import * as Yup from "yup";
+import mongoose from "mongoose";
 
 type IModalCrearSprint = {
   handleCloseModal: VoidFunction;
@@ -74,7 +75,10 @@ export const ModalCrearSprint: FC<IModalCrearSprint> = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    const fechaCierreAFormatear = formValues.fechaCierre;
+    const fechaInicioAFormatear = formValues.fechaInicio;
+    formValues.fechaCierre = new Date(fechaCierreAFormatear).toISOString().split("T")[0]
+    formValues.fechaInicio = new Date(fechaInicioAFormatear).toISOString().split("T")[0]
     try {
       await crearSprintSchema.validate(formValues, { abortEarly: false });
       setErrors({});
@@ -84,7 +88,7 @@ export const ModalCrearSprint: FC<IModalCrearSprint> = ({
       } else {
         const formattedValues = {
           ...formValues,
-          _id: crypto.randomUUID(),
+          _id: new mongoose.Types.ObjectId().toString(),
           tareas: [],
         };
         crearSprint(formattedValues);

@@ -5,6 +5,7 @@ import { tareaStore } from "../../../store/tareaStore";
 import { ISprint } from "../../../types/ISprint";
 import * as Yup from "yup";
 import { crearTareaSchema } from "../../../schemas/modalCrearTareaSchema";
+import mongoose from "mongoose";
 
 type IModalCrearTareaSprint = {
   handleCloseModal: VoidFunction;
@@ -79,14 +80,15 @@ export const ModalCrearTareaSprint: FC<IModalCrearTareaSprint> = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    const fechaAFormatear = formValues.fechaLimite
+    formValues.fechaLimite = new Date(fechaAFormatear).toISOString().split("T")[0]
     try {
       await crearTareaSchema.validate(formValues, { abortEarly: false });
       setErrors({});
 
       const formattedValues = {
         ...formValues,
-        id: tareaActiva ? formValues._id : crypto.randomUUID(),
+        _id: tareaActiva ? formValues._id : new mongoose.Types.ObjectId().toString(),
         estado: formValues.estado ?? "pendiente",
       };
 
@@ -158,8 +160,8 @@ export const ModalCrearTareaSprint: FC<IModalCrearTareaSprint> = ({
               onChange={handleChange}
               type="date"
               required
-              min={sprint.fechaInicio}
-              max={sprint.fechaCierre}
+              min={new Date(sprint.fechaInicio).toISOString().split("T")[0]}
+              max={new Date(sprint.fechaCierre).toISOString().split("T")[0]}
               autoComplete="off"
               name="fechaLimite"
             />

@@ -3,7 +3,7 @@ import { tareaStore } from '../store/tareaStore'
 import { ITarea } from '../types/ITarea'
 import Swal from 'sweetalert2'
 import { getBacklogController } from '../api/backlogController'
-import { createTareaController } from '../api/taskController'
+
 
 export const useTareas = () => {
     const { tareas, setTareas, agregarNuevaTarea, editarUnaTarea, eliminarUnaTarea } = tareaStore(useShallow((state) => ({
@@ -16,7 +16,15 @@ export const useTareas = () => {
 
     const getTareasBacklog = async () => {
         const data = await getBacklogController()
-        if (data) setTareas(data.tareas)
+        if (data) {
+            const tareasFormateadas = data.tareas.map((tarea: ITarea) => ({
+                ...tarea,
+                fechaLimite: tarea.fechaLimite
+                    ? new Date(tarea.fechaLimite).toISOString().split("T")[0]
+                    : "",
+            }));
+            setTareas(tareasFormateadas);
+        }
     }
 
     const crearTarea = async (nuevaTarea: ITarea) => {
