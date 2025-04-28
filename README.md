@@ -1,5 +1,5 @@
 Proyecto ToDO List
-Integrantes: Furtado, Ramiro - Rojas Matías - Vera Uriel
+Integrantes: Furtado, Ramiro - Rojas, Matías - Vera, Uriel
 
 Descripción:
 Aplicación de gestión de sprints y tareas hecho en React+TypeScript con Vite.
