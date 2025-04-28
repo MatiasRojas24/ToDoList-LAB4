@@ -100,21 +100,17 @@ export const Sprint = () => {
   }
 
   // Editar Tarea
-  const { editarTareasSprint } = useSprints()
-  const handleEditarTareaSprint = (tareaEditada: ITarea) => {
-    if (!sprint) return;
-    const tareasActualizadas = sprint.tareas.map((tarea) =>
-      tarea._id === tareaEditada._id ? tareaEditada : tarea
-    );
-    editarTareasSprint({ ...sprint, tareas: tareasActualizadas });
+  const { putTareaEditar } = useTareas()
+  const handleEditarTareaSprint = async (tareaEditada: ITarea) => {
+    await putTareaEditar(tareaEditada);
+    handleGetTareas()
   }
 
   // Eliminar tarea
-  const { eliminarTareaSprint } = useSprints()
-  const handleEliminarTarea = (idTarea: string) => {
-    if (!sprint) return;
-    const tareasActualizadas = sprint.tareas.filter(tarea => tarea._id !== idTarea);
-    eliminarTareaSprint({ ...sprint, tareas: tareasActualizadas });
+  const { eliminarTarea } = useTareas()
+  const handleEliminarTarea = async (idTarea: string) => {
+    await eliminarTarea(idTarea);
+    handleGetTareas()
   };
 
   // Ver tarea
