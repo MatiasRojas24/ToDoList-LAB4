@@ -1,12 +1,11 @@
 import axios from "axios";
-import { ISprintList } from "../types/ISprintList";
 import { ISprint } from "../types/ISprint";
 
 const API_URL = import.meta.env.VITE_API_URL_SPRINTS!
 
-export const getSprintsController = async (): Promise<ISprintList | undefined> => {
+export const getSprintsController = async (): Promise<ISprint[] | undefined> => {
     try {
-        const response = await axios.get<ISprintList>(API_URL)
+        const response = await axios.get<ISprint[]>(API_URL)
         return response.data
     } catch (error) {
         console.log("Problemas en getSprintsController", error)
@@ -33,7 +32,7 @@ export const createSprintController = async (sprintNueva: ISprint): Promise<ISpr
 
 export const updateSprintController = async (sprintActualizada: ISprint): Promise<ISprint | undefined> => {
     try {
-        const response = await axios.put<ISprint>(API_URL + `/${sprintActualizada.id}`, sprintActualizada)
+        const response = await axios.put<ISprint>(API_URL + `/${sprintActualizada._id}`, sprintActualizada)
         return response.data
     } catch (error) {
         console.log("Problemas en updateSprintController", error)

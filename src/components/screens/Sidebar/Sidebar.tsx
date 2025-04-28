@@ -19,7 +19,7 @@ export const Sidebar = () => {
   }
   const handleNavigateSprint = (sprint: ISprint) => {
     setSprintActiva(sprint)
-    navigate(`/sprints?sprint=${sprint.id}`)
+    navigate(`/sprints?sprint=${sprint._id}`)
     setSprintActiva(null)
   }
   const [openModal, setOpenModal] = useState(false)

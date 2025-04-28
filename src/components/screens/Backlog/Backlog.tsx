@@ -10,9 +10,9 @@ import { useSprints } from "../../../hooks/useSprints";
 export const Backlog = () => {
   const setTareaActiva = tareaStore((state) => state.setTareaActiva)
 
-  const { getTareas, tareas, eliminarTarea } = useTareas()
+  const { getTareasBacklog, tareas, eliminarTarea } = useTareas()
   useEffect(() => {
-    getTareas()
+    getTareasBacklog()
   }, [])
 
   const [openModalTarea, setOpenModalTarea] = useState(false)
@@ -36,11 +36,11 @@ export const Backlog = () => {
   const { recibirTareaDeBacklog } = useSprints()
   const { enviarTareaASprint } = useTareas()
   const handleEnviarTareaASprint = (tareaAEnviar: ITarea, idSprint: string) => {
-    const sprintAEnviar = sprints.find((sprint) => sprint.id == idSprint)
+    const sprintAEnviar = sprints.find((sprint) => sprint._id == idSprint)
     if (!sprintAEnviar) return;
     const tareasActualizadas = [...sprintAEnviar?.tareas, tareaAEnviar]
 
-    enviarTareaASprint(tareaAEnviar.id!)
+    enviarTareaASprint(tareaAEnviar._id!)
     recibirTareaDeBacklog({ ...sprintAEnviar!, tareas: tareasActualizadas });
   }
   return (
@@ -57,7 +57,7 @@ export const Backlog = () => {
         {
           tareas?.length > 0 ?
             tareas.map((el) => (
-              <TareaBacklogCard key={el.id} tarea={el} handleOpenModalEdit={handleOpenModalEdit} handleDeleteTarea={handleDeleteTarea} handleEnviarTareaASprint={handleEnviarTareaASprint} />
+              <TareaBacklogCard key={el._id} tarea={el} handleOpenModalEdit={handleOpenModalEdit} handleDeleteTarea={handleDeleteTarea} handleEnviarTareaASprint={handleEnviarTareaASprint} />
             )) : <div>
               <h3 style={{ marginLeft: "20px", marginTop: "10px" }}>No hay Tareas</h3>
             </div>

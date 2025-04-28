@@ -34,7 +34,7 @@ export const createTareaController = async (nuevaTarea: ITarea): Promise<ITarea 
 
 export const updateTareaController = async (tareaActualizada: ITarea): Promise<ITarea | undefined> => {
     try {
-        const response = await axios.put<ITarea>(API_URL + `/${tareaActualizada.id}`, tareaActualizada)
+        const response = await axios.put<ITarea>(API_URL + `/${tareaActualizada._id}`, tareaActualizada)
         return response.data
     } catch (error) {
         console.log("Problemas en updateTareaController", error)

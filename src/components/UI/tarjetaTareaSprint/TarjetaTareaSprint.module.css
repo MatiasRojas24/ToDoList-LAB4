@@ -70,3 +70,10 @@
 .enviarBacklogButton {
 background-color: green;
 }
+.textoTarjeta{
+    display: block;
+    white-space: nowrap;       /* Todo en una línea */
+    overflow-x: auto;          /* Scroll horizontal */
+    overflow-y: hidden;        /* Sin scroll vertical */
+    max-width: 100%;           /* Ocupa todo el ancho disponible */
+}

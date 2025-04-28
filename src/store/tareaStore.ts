@@ -16,11 +16,11 @@ export const tareaStore = create<ITareaStore>((set) => ({
     setTareas: (arrayDeTareasIn) => set(() => ({ tareas: arrayDeTareasIn })),
     agregarNuevaTarea: (nuevaTareaIn) => set((state) => ({ tareas: [...state.tareas, nuevaTareaIn] })),
     editarUnaTarea: (tareaEditadaIn) => set((state) => {
-        const arregloTarea = state.tareas.map((tarea) => tarea.id === tareaEditadaIn.id ? { ...tarea, ...tareaEditadaIn } : tarea)
+        const arregloTarea = state.tareas.map((tarea) => tarea._id === tareaEditadaIn._id ? { ...tarea, ...tareaEditadaIn } : tarea)
         return { tareas: arregloTarea }
     }),
     eliminarUnaTarea: (idTareaIn) => set((state) => {
-        const arregloTarea = state.tareas.filter((tarea) => tarea.id !== idTareaIn)
+        const arregloTarea = state.tareas.filter((tarea) => tarea._id !== idTareaIn)
         return { tareas: arregloTarea }
     }),
     setTareaActiva: (tareaActivaIn) => set(() => ({ tareaActiva: tareaActivaIn })),

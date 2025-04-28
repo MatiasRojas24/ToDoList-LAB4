@@ -2,6 +2,7 @@ import { useShallow } from "zustand/shallow"
 import { sprintStore } from "../store/sprintStore"
 import { ISprint } from "../types/ISprint"
 import Swal from "sweetalert2"
+import { getSprintsController } from "../api/sprintController"
 
 
 export const useSprints = () => {
@@ -24,13 +25,13 @@ export const useSprints = () => {
             await createSprintController(nuevaSprint)
             Swal.fire("Éxito", "Sprint creada correctamente", "success")
         } catch (error) {
-            eliminarUnaSprint(nuevaSprint.id!)
+            eliminarUnaSprint(nuevaSprint._id!)
             console.error("Algo salió mal al crear la sprint: ", error)
         }
     }
 
     const putSprintEditar = async (sprintEditada: ISprint) => {
-        const estadoPrevio = sprints.find((el) => el.id === sprintEditada.id)
+        const estadoPrevio = sprints.find((el) => el._id === sprintEditada._id)
         editarUnaSprint(sprintEditada)
         try {
             await updateSprintController(sprintEditada)
@@ -42,7 +43,7 @@ export const useSprints = () => {
     }
 
     const eliminarSprint = async (idSprint: string) => {
-        const estadoPrevio = sprints.find((el) => el.id === idSprint)
+        const estadoPrevio = sprints.find((el) => el._id === idSprint)
         const confirm = await Swal.fire({
             title: "¿Estás seguro?",
             text: "Esta acción no se puede deshacer",
@@ -63,7 +64,7 @@ export const useSprints = () => {
     }
 
     const modificarEstadoTareasSprint = async (sprintEditada: ISprint) => {
-        const estadoPrevio = sprints.find((el) => el.id === sprintEditada.id)
+        const estadoPrevio = sprints.find((el) => el._id === sprintEditada._id)
         editarUnaSprint(sprintEditada)
         try {
             await updateSprintController(sprintEditada)
@@ -74,7 +75,7 @@ export const useSprints = () => {
     }
 
     const editarTareasSprint = async (sprintEditada: ISprint) => {
-        const estadoPrevio = sprints.find((el) => el.id === sprintEditada.id)
+        const estadoPrevio = sprints.find((el) => el._id === sprintEditada._id)
         try {
             await updateSprintController(sprintEditada)
             editarUnaSprint(sprintEditada)
@@ -86,7 +87,7 @@ export const useSprints = () => {
     }
 
     const crearTareaSprint = async (sprintEditada: ISprint) => {
-        const estadoPrevio = sprints.find((el) => el.id === sprintEditada.id)
+        const estadoPrevio = sprints.find((el) => el._id === sprintEditada._id)
         try {
             await updateSprintController(sprintEditada)
             editarUnaSprint(sprintEditada)
@@ -98,7 +99,7 @@ export const useSprints = () => {
     }
 
     const eliminarTareaSprint = async (sprintEditada: ISprint) => {
-        const estadoPrevio = sprints.find((el) => el.id === sprintEditada.id)
+        const estadoPrevio = sprints.find((el) => el._id === sprintEditada._id)
         const confirm = await Swal.fire({
             title: "¿Estás seguro?",
             text: "Esta acción no se puede deshacer",

@@ -12,7 +12,7 @@ const Dropdown = ({ sprints, onSelectSprint }: DropdownProps) => {
   const [selectedSprint, setSelectedSprint] = useState<ISprint | null>(null);
 
   const handleSelect = (sprint: ISprint) => {
-    onSelectSprint(sprint.id!);
+    onSelectSprint(sprint._id!);
     setSelectedSprint(sprint);
     setIsOpen(false);
   };
@@ -29,7 +29,7 @@ const Dropdown = ({ sprints, onSelectSprint }: DropdownProps) => {
         <div className={styles.dropdownMenu}>
           {sprints.map((sprint) => (
             <button
-              key={sprint.id}
+              key={sprint._id}
               className={styles.dropdownItem}
               onClick={() => handleSelect(sprint)}
             >

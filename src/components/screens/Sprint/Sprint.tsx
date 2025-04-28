@@ -9,6 +9,7 @@ import { ModalCrearTareaSprint } from "../../UI/ModalCrearTareaSprint/ModalCrear
 import { tareaStore } from "../../../store/tareaStore";
 import { ModalViewTarea } from "../../UI/ModalViewTarea/ModalViewTarea";
 import { useTareas } from "../../../hooks/useTareas";
+import { getSprintByIdController } from "../../../api/sprintController";
 
 export const Sprint = () => {
   const [searchParams] = useSearchParams()
@@ -29,8 +30,8 @@ export const Sprint = () => {
   }, [sprints, sprintUrlId]);
 
   const [sprint, setSprint] = useState<ISprint>()
-  const handleGetTareas = () => {
-    const sprintURL = sprints.find((sprint) => sprint.id === sprintUrlId);
+  const handleGetTareas = async () => {
+    const sprintURL = await getSprintByIdController(sprintUrlId);
     if (!sprintURL) {
       setSprint(undefined);
       setTareasPendiente([]);
@@ -72,7 +73,7 @@ export const Sprint = () => {
   }
   const handleUpdateTarea = (tareaActualizada: ITarea) => { //sube la actualización de las tareas a la sprint
     const tareasActualizadas = sprint?.tareas.map((tarea) =>
-      tarea.id === tareaActualizada.id ? tareaActualizada : tarea
+      tarea._id === tareaActualizada._id ? tareaActualizada : tarea
     );
     if (!tareasActualizadas) return;
     modificarEstadoTareasSprint({ ...sprint!, tareas: tareasActualizadas });
@@ -101,7 +102,7 @@ export const Sprint = () => {
   const handleEditarTareaSprint = (tareaEditada: ITarea) => {
     if (!sprint) return;
     const tareasActualizadas = sprint.tareas.map((tarea) =>
-      tarea.id === tareaEditada.id ? tareaEditada : tarea
+      tarea._id === tareaEditada._id ? tareaEditada : tarea
     );
     editarTareasSprint({ ...sprint, tareas: tareasActualizadas });
   }
@@ -110,7 +111,7 @@ export const Sprint = () => {
   const { eliminarTareaSprint } = useSprints()
   const handleEliminarTarea = (idTarea: string) => {
     if (!sprint) return;
-    const tareasActualizadas = sprint.tareas.filter(tarea => tarea.id !== idTarea);
+    const tareasActualizadas = sprint.tareas.filter(tarea => tarea._id !== idTarea);
     eliminarTareaSprint({ ...sprint, tareas: tareasActualizadas });
   };
 
@@ -127,7 +128,7 @@ export const Sprint = () => {
   const { enviarTareaABacklog } = useSprints()
   const handleEnviarABacklog = (tareaIn: ITarea) => {
     if (!sprint) return;
-    const tareasActualizadas = sprint.tareas.filter(tarea => tarea.id !== tareaIn.id);
+    const tareasActualizadas = sprint.tareas.filter(tarea => tarea._id !== tareaIn._id);
     enviarTareaABacklog({ ...sprint, tareas: tareasActualizadas });
     recibirTareaDeSprint(tareaIn)
   }

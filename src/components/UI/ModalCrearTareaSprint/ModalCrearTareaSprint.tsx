@@ -86,7 +86,7 @@ export const ModalCrearTareaSprint: FC<IModalCrearTareaSprint> = ({
 
       const formattedValues = {
         ...formValues,
-        id: tareaActiva ? formValues.id : crypto.randomUUID(),
+        id: tareaActiva ? formValues._id : crypto.randomUUID(),
         estado: formValues.estado ?? "pendiente",
       };
 

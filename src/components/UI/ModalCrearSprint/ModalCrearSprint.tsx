@@ -84,7 +84,7 @@ export const ModalCrearSprint: FC<IModalCrearSprint> = ({
       } else {
         const formattedValues = {
           ...formValues,
-          id: crypto.randomUUID(),
+          _id: crypto.randomUUID(),
           tareas: [],
         };
         crearSprint(formattedValues);

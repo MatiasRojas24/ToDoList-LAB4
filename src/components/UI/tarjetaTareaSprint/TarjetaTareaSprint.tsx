@@ -20,7 +20,7 @@ export const TarjetaTareaSprint: FC<ITarjetaTareaSprint> = ({ tareas, handleChan
                 <div className={styles.targetSprintProgress}>
                     <h4 className={styles.textoTarjeta}>Título: {tarea.titulo}</h4>
                     <p className={styles.textoTarjeta}>Descripción: {tarea.descripcion}</p>
-                    <p>Fecha Límite: {tarea.fechaLimite}</p>
+                    <p className={styles.textoTarjeta}>Fecha Límite: {tarea.fechaLimite}</p>
                     <div className={styles.targetProgressbuttons}>
                         <button className={styles.enviarBacklogButton} onClick={() => handleEnviarABacklog(tarea)}>
                             <span className="material-symbols-outlined">
@@ -63,7 +63,7 @@ export const TarjetaTareaSprint: FC<ITarjetaTareaSprint> = ({ tareas, handleChan
                         <button className={styles.editButton} onClick={() => { handleOpenEditModal(tarea) }}>
                             <span className="material-symbols-outlined">edit</span>
                         </button>
-                        <button className={styles.deleteButton} onClick={() => { handleEliminarTarea(tarea.id!) }}>
+                        <button className={styles.deleteButton} onClick={() => { handleEliminarTarea(tarea._id!) }}>
                             <span className="material-symbols-outlined">delete</span>
                         </button>
                     </div>

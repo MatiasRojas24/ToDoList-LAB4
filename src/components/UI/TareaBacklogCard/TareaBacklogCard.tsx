@@ -48,7 +48,7 @@ export const TareaBacklogCard: FC<ITareaBacklogCard> = ({ tarea, handleOpenModal
                         <button className={styles.editButton} onClick={() => handleOpenModalEdit(tarea)}>
                             <span className="material-symbols-outlined">edit</span>
                         </button>
-                        <button className={styles.deleteButton} onClick={() => handleDeleteTarea(tarea.id!)}>
+                        <button className={styles.deleteButton} onClick={() => handleDeleteTarea(tarea._id!)}>
                             <span className="material-symbols-outlined">delete</span>
                         </button>
                     </div>

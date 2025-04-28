@@ -14,7 +14,7 @@ export const SprintListCard: FC<ISprintListCard> = ({ sprint, handleNavigateSpri
     const [openViewModal, setOpenViewModal] = useState(false)
     return (
         <>
-            <div key={sprint.id} onClick={(e) => { e.stopPropagation(); handleNavigateSprint(sprint) }} className={styles.containerSprints}>
+            <div key={sprint._id} onClick={(e) => { e.stopPropagation(); handleNavigateSprint(sprint) }} className={styles.containerSprints}>
                 <h4 className={styles.textoTarjeta}>{sprint.nombre}</h4>
                 <p>Inicio: {sprint.fechaInicio}</p>
                 <p>Cierre: {sprint.fechaCierre}</p>
@@ -25,7 +25,7 @@ export const SprintListCard: FC<ISprintListCard> = ({ sprint, handleNavigateSpri
                     <button className={styles.editButton} onClick={(e) => { e.stopPropagation(); handleOpenModalEdit(sprint) }}>
                         <span className="material-symbols-outlined">edit</span>
                     </button>
-                    <button className={styles.deleteButton} onClick={(e) => { e.stopPropagation(); handleDelete(sprint.id!) }}>
+                    <button className={styles.deleteButton} onClick={(e) => { e.stopPropagation(); handleDelete(sprint._id!) }}>
                         <span className="material-symbols-outlined">delete</span>
                     </button>
                 </div>

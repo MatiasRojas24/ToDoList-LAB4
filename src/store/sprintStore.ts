@@ -16,11 +16,11 @@ export const sprintStore = create<ISprintStore>((set) => ({
     setSprints: (arrayDeSprintsIn) => set(() => ({ sprints: arrayDeSprintsIn })),
     agregarNuevaSprint: (nuevaSprintIn) => set((state) => ({ sprints: [...state.sprints, nuevaSprintIn] })),
     editarUnaSprint: (sprintEditadaIn) => set((state) => {
-        const arregloSprint = state.sprints.map((sprint) => sprint.id === sprintEditadaIn.id ? { ...sprint, ...sprintEditadaIn } : sprint)
+        const arregloSprint = state.sprints.map((sprint) => sprint._id === sprintEditadaIn._id ? { ...sprint, ...sprintEditadaIn } : sprint)
         return { sprints: arregloSprint }
     }),
     eliminarUnaSprint: (idSprintIn) => set((state) => {
-        const arregloSprint = state.sprints.filter((sprint) => sprint.id !== idSprintIn)
+        const arregloSprint = state.sprints.filter((sprint) => sprint._id !== idSprintIn)
         return { sprints: arregloSprint }
     }),
     setSprintActiva: (sprintActivaIn) => set(() => ({ sprintActiva: sprintActivaIn })),

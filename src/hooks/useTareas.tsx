@@ -2,6 +2,8 @@ import { useShallow } from 'zustand/shallow'
 import { tareaStore } from '../store/tareaStore'
 import { ITarea } from '../types/ITarea'
 import Swal from 'sweetalert2'
+import { getBacklogController } from '../api/backlogController'
+import { createTareaController } from '../api/taskController'
 
 export const useTareas = () => {
     const { tareas, setTareas, agregarNuevaTarea, editarUnaTarea, eliminarUnaTarea } = tareaStore(useShallow((state) => ({
@@ -12,9 +14,9 @@ export const useTareas = () => {
         editarUnaTarea: state.editarUnaTarea
     })))
 
-    const getTareas = async () => {
-        const data = await getTareasController()
-        if (data) setTareas(data)
+    const getTareasBacklog = async () => {
+        const data = await getBacklogController()
+        if (data) setTareas(data.tareas)
     }
 
     const crearTarea = async (nuevaTarea: ITarea) => {
@@ -23,13 +25,13 @@ export const useTareas = () => {
             await createTareaController(nuevaTarea)
             Swal.fire("Éxito", "Tarea creada correctamente", "success")
         } catch (error) {
-            eliminarUnaTarea(nuevaTarea.id!)
+            eliminarUnaTarea(nuevaTarea._id!)
             console.error("Algo salió mal al crear la tarea: ", error)
         }
     }
 
     const putTareaEditar = async (tareaEditada: ITarea) => {
-        const estadoPrevio = tareas.find((el) => el.id === tareaEditada.id)
+        const estadoPrevio = tareas.find((el) => el._id === tareaEditada._id)
         editarUnaTarea(tareaEditada)
         try {
             await updateTareaController(tareaEditada)
@@ -41,7 +43,7 @@ export const useTareas = () => {
     }
 
     const eliminarTarea = async (idTarea: string) => {
-        const estadoPrevio = tareas.find((el) => el.id === idTarea)
+        const estadoPrevio = tareas.find((el) => el._id === idTarea)
         const confirm = await Swal.fire({
             title: "¿Estás seguro?",
             text: "Esta acción no se puede deshacer",
@@ -62,7 +64,7 @@ export const useTareas = () => {
     }
 
     const enviarTareaASprint = async (idTarea: string) => {
-        const estadoPrevio = tareas.find((el) => el.id === idTarea)
+        const estadoPrevio = tareas.find((el) => el._id === idTarea)
         try {
             await deleteTareaController(idTarea)
             eliminarUnaTarea(idTarea)
@@ -78,10 +80,10 @@ export const useTareas = () => {
         try {
             await createTareaController(nuevaTarea)
         } catch (error) {
-            eliminarUnaTarea(nuevaTarea.id!)
+            eliminarUnaTarea(nuevaTarea._id!)
             console.error("Algo salió mal al recibir la tarea en el backlog: ", error)
         }
     }
 
-    return { getTareas, crearTarea, putTareaEditar, eliminarTarea, enviarTareaASprint, recibirTareaDeSprint, tareas }
+    return { getTareasBacklog, crearTarea, putTareaEditar, eliminarTarea, enviarTareaASprint, recibirTareaDeSprint, tareas }
 }

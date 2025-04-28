@@ -81,7 +81,7 @@ export const ModalCrearTarea: FC<IModalCrearTarea> = ({ handleCloseModal }) => {
       } else {
         const formattedValues = {
           ...formValues,
-          id: crypto.randomUUID(),
+          _id: crypto.randomUUID(),
           estado: formValues.estado ?? "pendiente",
           tareas: [],
         };
